@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual environments
+venv/
+env/
+gan_env/
+
+# Models and data
+models/
+training_frames/
+*.keras
+*.h5
+*.pth
+
+# Results
+results/
+*.csv
+*.json
+
+# Video files
+*.avi
+*.mp4
+*.mov
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite

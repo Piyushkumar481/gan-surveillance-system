@@ -1,0 +1,46 @@
+# GAN Surveillance System Configuration
+
+model:
+  image_shape: [64, 64, 1]
+  latent_dim: 100
+  learning_rate: 0.0001
+  batch_size: 32
+  train_epochs: 50
+  save_interval: 10
+
+detection:
+  threshold: 0.1
+  min_confidence: 0.7
+  max_batch_size: 16
+  alert_email: "security@example.com"
+  sms_notification: false
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+  log_level: "INFO"
+  cors_origins: ["http://localhost:3000"]
+  rate_limit: 100
+
+database:
+  path: "anomalies.db"
+  echo: false
+  pool_size: 10
+  max_overflow: 20
+
+storage:
+  frames_directory: "processed_frames"
+  models_directory: "saved_models"
+  max_storage_days: 30
+
+monitoring:
+  enable_prometheus: true
+  metrics_port: 9090
+  health_check_interval: 30
+
+notifications:
+  email_enabled: false
+  sms_enabled: false
+  webhook_url: ""
+  slack_webhook: ""

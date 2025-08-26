@@ -1,0 +1,155 @@
+# GAN Model Configuration
+# This file contains all model-related parameters
+
+model:
+  # Image dimensions
+  image_shape: [64, 64, 1]
+  
+  # Generator parameters
+  generator:
+    latent_dim: 100
+    filters: [64, 128, 256]
+    kernel_size: 4
+    strides: 2
+    activation: "leaky_relu"
+    final_activation: "sigmoid"
+    use_batch_norm: true
+    dropout_rate: 0.3
+  
+  # Discriminator parameters
+  discriminator:
+    filters: [64, 128, 256]
+    kernel_size: 4
+    strides: 2
+    activation: "leaky_relu"
+    use_batch_norm: true
+    dropout_rate: 0.3
+    final_units: 1
+  
+  # Training parameters
+  training:
+    batch_size: 32
+    epochs: 100
+    save_interval: 10
+    validation_split: 0.1
+    early_stopping_patience: 20
+    
+    # Learning rates
+    generator_lr: 0.0002
+    discriminator_lr: 0.0002
+    lr_decay: 0.95
+    
+    # Loss weights
+    adversarial_weight: 1.0
+    reconstruction_weight: 10.0
+    gradient_penalty_weight: 10.0
+    
+    # Optimizer parameters
+    beta_1: 0.5
+    beta_2: 0.999
+    epsilon: 1e-7
+
+# Anomaly detection parameters
+anomaly_detection:
+  # Threshold settings
+  default_threshold: 0.1
+  adaptive_threshold: true
+  threshold_alpha: 0.1  # Smoothing factor for adaptive threshold
+  
+  # Feature weights
+  reconstruction_weight: 0.7
+  motion_weight: 0.3
+  temporal_weight: 0.2
+  
+  # Sequence detection
+  min_anomaly_duration: 1.0  # seconds
+  min_sequence_length: 3  # frames
+  max_sequence_gap: 5  # frames
+  
+  # Confidence calculation
+  confidence_window: 10
+  min_confidence: 0.3
+  max_confidence: 0.95
+  
+  # Post-processing
+  smoothing_window: 5
+  apply_temporal_smoothing: true
+  suppress_weak_anomalies: true
+  weak_anomaly_threshold: 0.15
+
+# Video processing parameters
+video_processing:
+  target_fps: 5
+  resize_method: "bilinear"
+  grayscale: true
+  normalize: true
+  clip_values: true
+  
+  # Frame extraction
+  max_frames: 1000
+  frame_skip: 1
+  buffer_size: 100
+  
+  # Quality settings
+  jpeg_quality: 95
+  png_compression: 3
+
+# Data augmentation (for training)
+augmentation:
+  enabled: true
+  rotation_range: 10
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  zoom_range: 0.1
+  horizontal_flip: true
+  brightness_range: [0.9, 1.1]
+  contrast_range: [0.9, 1.1]
+  fill_mode: "reflect"
+  augmentation_probability: 0.5
+
+# Model persistence
+persistence:
+  save_format: "keras"  # or "h5"
+  compression: true
+  include_optimizer: true
+  save_traces: true
+  
+  # Checkpoint settings
+  checkpoint_dir: "models/checkpoints"
+  best_model_dir: "models/best"
+  final_model_dir: "models/final"
+  
+  # Monitoring
+  monitor_metric: "val_loss"
+  monitor_mode: "min"
+  save_best_only: true
+  verbose: 1
+
+# Performance optimization
+performance:
+  mixed_precision: true
+  xla_compilation: false
+  memory_growth: true
+  per_process_gpu_memory_fraction: 0.8
+  
+  # Threading
+  num_parallel_calls: 4
+  prefetch_buffer: 2
+  shuffle_buffer: 1000
+  
+  # Batch optimization
+  dynamic_batching: true
+  max_batch_size: 64
+  min_batch_size: 8
+
+# Logging and monitoring
+logging:
+  log_level: "INFO"
+  log_file: "logs/training.log"
+  tensorboard_dir: "logs/tensorboard"
+  metrics_frequency: 100  # steps
+  validation_frequency: 1  # epochs
+  
+  # Metrics to track
+  track_metrics: ["loss", "accuracy", "precision", "recall", "f1_score"]
+  early_stopping_metric: "val_loss"
