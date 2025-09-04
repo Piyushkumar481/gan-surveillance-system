@@ -23,10 +23,12 @@ High Performance: 15+ FPS processing on standard hardware
 Adaptive Learning: Continuous improvement without manual intervention
 
 System Architecture
+```
 Video Input -> Preprocessing -> GAN Enhancement -> Anomaly Detection -> Threat Assessment
       |             |                |                 |                 |
       |             |                |                 |                 |
     Real-time Alerts  Dashboard Visualization  Historical Analysis  Security Response
+```
 
 Quick Start
 Prerequisites
@@ -40,33 +42,51 @@ MongoDB 5.0+
 
 Installation
 1. Clone the repository
+```
 git clone https://github.com/your-username/gan-surveillance-system.git
 cd gan-surveillance-system
-2. Set up Python environment
+```
+3. Set up Python environment
 # Create virtual environment
+```
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
+```
 # or
+```
 .\venv\Scripts\activate  # Windows
+```
 
 # Install dependencies
+```
 pip install -r requirements.txt
+```
 3. Set up Node.js environment
+```
 cd frontend
 npm install
 cd ..
-4. Configure environment variables
+```
+5. Configure environment variables
+```
 cp .env.example .env
+```
 # Edit .env with your configuration
 5. Initialize the database
+```
 python scripts/init_db.py
-6. Start the application
+```
+7. Start the application
 # Start backend server
+```
 python src/api/main.py
+```
 
 # In another terminal, start frontend
+```
 cd frontend
 npm start
+```
 
 The system will be available at:
 
@@ -81,39 +101,60 @@ Basic Video Processing
 from surveillance_system import GANSurveillanceSystem
 
 # Initialize the system
+```
 system = GANSurveillanceSystem(config_path="config.yaml")
+```
 
 # Process live video feed
+```
 results = system.process_video("rtsp://security-camera-feed")
+```
 
 # Analyze recorded footage
+```
 analysis = system.analyze_recording("path/to/recording.mp4")
+```
 
 # Generate threat report
+```
 report = system.generate_report(start_time, end_time)
+```
 
 Custom Model Training
+```
 from models.gan_trainer import GANTrainer
+```
 
 # Initialize trainer
+```
 trainer = GANTrainer(dataset_path="data/training_samples")
+```
 
 # Train enhancement model
+```
 trainer.train_enhancement_model(epochs=100, batch_size=16)
+```
 
 # Train detection model
+```
 trainer.train_detection_model(epochs=150, batch_size=8)
+```
 
 # Export trained models
+```
 trainer.export_models("exported_models/")
+```
 
 Performance Metrics
+```
 Metric	Our System	Traditional Systems	Improvement
 Detection Accuracy	95.3%	72.1%	+23.2%
 False Positive Rate	4.7%	14.5%	-67.8%
 Processing Speed	2.1s	8.7s	+75.9%
 Low-Light Performance	32.7% PSNR	8.2% PSNR	+24.5%
 Deployment Scalability	50+ streams	5-8 streams	+900%
+```
+
 Awards and Recognition
 SIH 2023 Finalist: Selected among top 50 projects in Smart India Hackathon
 
